@@ -24,11 +24,11 @@ import System.IO ( hPutStrLn, stderr, hSetBuffering, stdout,
 import System.Console.GetOpt ( OptDescr(..), ArgDescr(..), getOpt, usageInfo,
                                ArgOrder(Permute) )
 import System.Environment ( getArgs )
-import System.Random ( StdGen )
 import System.Exit ( exitWith, ExitCode(ExitSuccess) )
 import Data.Maybe ( isJust )
 import Text.Regex ( mkRegex, matchRegex )
 import Test.QuickCheck ( Args(..), stdArgs )
+import Test.QuickCheck.Random ( QCGen )
 
 import Test.Runner.Backends ( TestRunnerTest(..) )
 import Test.Runner.Driver ( runTestsParallelWithArgs, Result(..) )
@@ -94,7 +94,7 @@ runAndShowTests numThreads qcArgs tests = do
 data UnitFlag = ShowHelp
               | NumJobs Int
               | Matching String
-              | QuickCheckReplay StdGen Int
+              | QuickCheckReplay QCGen Int
 
 -- | Parse a string to UnitFlag that describes the number of jobs to run. Exits
 --   in case of malformed input.
@@ -106,7 +106,7 @@ parse_numjobs s = case reads s of
 parse_qc_replay :: String -> UnitFlag
 parse_qc_replay s = QuickCheckReplay seed size
   where (seedString, sizeString) = break (==',') s
-        seed = case reads seedString :: [(StdGen, String)] of
+        seed = case reads seedString :: [(QCGen, String)] of
                  [(seed', "")] -> seed'
                  _             -> error "Invalid QuickCheck seed given"
         size = case sizeString of

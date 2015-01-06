@@ -24,12 +24,11 @@ Build-Type:     Simple
 Cabal-Version:  >=1.2
 
 Library
-  Build-Depends:        QuickCheck >=2.1 && <2.7,
+  Build-Depends:        QuickCheck >=2.7,
                         HUnit,
                         stm,
                         base >=3 && <5,
-                        regex-compat,
-                        random
+                        regex-compat
   Exposed-modules:      Test.Runner,
                         Test.Runner.Frontend,
                         Test.Runner.Driver,
