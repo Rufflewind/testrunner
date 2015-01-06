@@ -24,7 +24,7 @@ Build-Type:     Simple
 Cabal-Version:  >=1.2
 
 Library
-  Build-Depends:        QuickCheck>=2.1,
+  Build-Depends:        QuickCheck >=2.1 && <2.7,
                         HUnit,
                         stm,
                         base >=3 && <5,
