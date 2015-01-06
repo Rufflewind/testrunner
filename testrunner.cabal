@@ -1,5 +1,5 @@
 Name:           testrunner
-Version:        0.9.1
+Version:        0.9.2
 Category:       Testing
 Synopsis:       Easy unit test driver framework
 Description:    testrunner is a framework to run unit tests. It has the
